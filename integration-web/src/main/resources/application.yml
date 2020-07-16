@@ -1,0 +1,46 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: utf-8
+
+spring:
+  mqtt:
+    username: admin
+    mq-password: admin
+    host-url: tcp://172.26.3.86:1883
+    client-id: zhjsbackground${random.value}
+    default-topic: $SYS//brokers//+//clients//#
+    completionTimeout: 3000
+    keepAlive: 60
+    config:
+      channel1:
+        url: tcp://172.26.3.86:1883
+        topics: [topic1, topic2]
+        qos: [1, 0]
+        username: admin
+        password: public
+        timeout: 60
+        kep-alive-interval: 60
+        async: true
+        client-id-prefix: client_test1_
+      channel2:
+        url: tcp://172.26.3.86:1883
+        topics: [topic3, topic4]
+        qos: [1, 0]
+        username: admin
+        password: public
+        timeout: 60
+        kep-alive-interval: 60
+        async: true
+        client-id-prefix: client_test2_
+
+minio:
+  endpoint: http://172.26.1.233:21222
+  accessKey: minioadmin
+  secretKey: minioadmin
+logging:
+  level:
+    root: info
+  file:
+    path: /log/demo.log
